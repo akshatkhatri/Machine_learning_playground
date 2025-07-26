@@ -1,0 +1,14 @@
+1. Yes , we can train diffferent models on the same exact data , we can use ensemble learning , i.e. we make the models vote for the best in terms of classification and average in case of regression , as collective wisdom of the models will overshadow each model's individual shortcomings , alterantively we can use a blender too , also ensemble will work best if the data they are trained on is different , (the whole point of bagging and pasting) , not only that if the model are different in the way they function , the results would still be good.
+
+2. Hard-voting classifiers , do a majority vote on the hard-predictions such as 0 or 1 , what the model predicted , soft-voting takes into account how confient the model was while predicting 0 or 1 , and uses weighted sum of all the other probabilities to predict the final outcome , for example if a model is confident that 0 is 90 % , 1 is 51 % , 1 is 52 % , you cant neglect the 90 % as the other two models are not that sure. 
+
+3. Yes , bagging ensemble works great parallely and so does pasting , core reason of why they scale so well , BOOSTING Ensembles dont work parallely , because each estimator gets trained on the short-comings of the previous estimator , hence we have to wait for the predictions to come before we begin training , also random-forests can work parallely , as it can train many decision trees paralelly
+
+4. Out-of-Bag evaluation generally happens in the concept of bagging in the training set , where random data is selected with replacement , by mathematics it can be shown that if bagging samples are equal to total samples , then on an sample on an avaerage only 67% of the original samples are collected , rest repeats . Hence those remaining 37 % can act as pseudo-validation sets, and we can use these evaluations to test evaluate a bagging ensemble, This method allows validation without requiring a seperate test or validation set.
+, stacking can be done parallely as each model can train parallely , but the next layer of predictor can only work when one layer is complete , so its semi-parallel.
+
+5. Random - forest is n number of decision trees , trained on random subsets of data with random - features , but they still work as decision trees at their core ,splitting on an optimal point (greedy !), but extra-trees(or extra random trees) they work by randomly selecting possible threshold values to do the split from , and then selecting the best one from it , saving a lot of time , as the most time-consuming task in decision trees or random forests is the splitting itself. so extra-trees classifiers is faster.
+
+6. Possibly inrease the learning rate and the n_estimators hyper-parameters , we can even reduce the regularization hyper-parameters of the base-estimator.
+
+7. Decrease the Learning rate and possible n_estimators , you can use also use n_iter_no_change hyper-paramter for early stopping to prevent over-fitting
